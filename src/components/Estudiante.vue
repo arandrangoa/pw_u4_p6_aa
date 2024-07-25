@@ -1,48 +1,89 @@
-<!-- src/components/Estudiante.vue -->
 <template>
-  <div class="student-form">
+  <div class="formulario">
     <h2>Formulario de Estudiante</h2>
-    <form @submit.prevent="onSubmit">
-      <label for="id">ID:</label>
-      <input type="text" id="id" />
-
-      <label for="name">Nombre:</label>
-      <input type="text" id="name"  />
-
-      <label for="lastname">Apellido:</label>
-      <input type="text" id="lastname"  />
-
-      <label for="dob">Fecha de Nacimiento:</label>
-      <input type="date" id="dob"  />
-
-      <label for="idnumber">Cédula:</label>
-      <input type="text" id="idnumber" v-model="cedula" />
-
-      <button type="button" @click="consultar">Consultar/Buscar</button>
-      <button type="button" @click="actualizar">Actualizar</button>
+    <form>
+      <div class="form-group">
+        <label for="id">ID:</label>
+        <input v-model="id" type="text" id="id" />
+      </div>
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input v-model="nombre" type="text" id="nombre" />
+      </div>
+      <div class="form-group">
+        <label for="apellido">Apellido:</label>
+        <input v-model="apellido" type="text" id="apellido" />
+      </div>
+ 
+      <div class="form-group">
+        <label for="genero">Genero:</label>
+        <input v-model="genero" type="text" id="genero" />
+      </div>
+ 
+      <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input v-model="fechaNacimiento" type="text" id="fechaNacimiento" />
+      </div>
+      <div class="form-group">
+        <label for="cedula">Cédula:</label>
+        <input v-model="cedula" type="text" id="cedula" />
+      </div>
+      <div class="form-buttons">
+        <button @click="consultar" type="button">Consultar</button>
+        <button @click="actualizar" type="button">Actualizar</button>
+      </div>
     </form>
   </div>
 </template>
-
+ 
 <script>
-import {obtenerPorCedulaAxiosFachada, actualizarFachada} from  '../clients/clienteEstudiante.js'
+import {
+  obtenerPorCedulaAxiosFachada,
+  actualizarFachada,
+} from "../clients/clienteEstudiante.js";
 export default {
   data() {
     return {
-      cedula:null
+      cedula: null,
+      genero: null,
+      nombre: null,
+      apellido: null,
+      fechaNacimiento: null,
     };
   },
   methods: {
     async consultar() {
       console.log(this.cedula);
-
-      const data =await obtenerPorCedulaAxiosFachada(this.cedula);
+      const data = await obtenerPorCedulaAxiosFachada(this.cedula);
+      console.log(data);
+      console.log(data.nombre);
+      console.log(data.apellido);
+      this.genero = data.genero;
+      this.nombre = data.nombre;
+      this.apellido = data.apellido;
+      this.fechaNacimiento = data.fechaNacimiento;
+    },
+ 
+    async actualizar() {
+      //"1998-09-07T10:45:34"
+     
+      console.log(this.fechaNacimiento);
+ 
+      let fechaFinal = this.fechaNacimiento + "T00:00:00";
+ 
+      const bodyEstudiante = {
+        nombre: this.nombre,
+        apellido: this.apellido,
+        fechaNacimiento: this.fechaFinal,
+        genero: this.genero,
+      };
+      const data = await actualizarFachada(this.cedula, bodyEstudiante);
       console.log(data);
     },
-    actualizar() {
-      
-    }
-  }
+ 
+ 
+   
+  },
 };
 </script>
 

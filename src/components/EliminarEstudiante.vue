@@ -1,25 +1,32 @@
-<!-- src/components/EliminarEstudiante.vue -->
 <template>
-  <div class="delete-student">
+  <div class="formulario">
     <h2>Eliminar Estudiante</h2>
-    <label for="idnumber">Cédula:</label>
-    <input type="text" id="idnumber" v-model="idnumber" />
-    <button @click="eliminar">Eliminar</button>
+    <form>
+      <div class="form-group">
+        <label for="cedula">Cédula:</label>
+        <input v-model="cedula" type="text" id="cedula" />
+      </div>
+      <div class="form-buttons">
+        <button @click="eliminar" type="button">Eliminar</button>
+      </div>
+    </form>
   </div>
 </template>
-
+ 
 <script>
+import { eliminarFachada } from "../clients/clienteEstudiante.js";
+ 
 export default {
   data() {
     return {
-      idnumber: ''
+      cedula: null,
     };
   },
   methods: {
-    eliminar() {
-      // Lógica para eliminar
-    }
-  }
+    async eliminar() {
+      await eliminarFachada(this.cedula);
+    },
+  },
 };
 </script>
 

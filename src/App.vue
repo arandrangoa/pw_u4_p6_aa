@@ -1,25 +1,19 @@
 <template>
-  <div id="app">
-    <nav>
-      <button @click="currentView = 'Estudiante'">Formulario de Estudiante</button>
-      <button @click="currentView = 'EliminarEstudiante'">Eliminar Estudiante</button>
-      <button @click="currentView = 'GuardarEstudiante'">Guardar Estudiante</button>
-    </nav>
-    <component :is="currentView"></component>
-  </div>
+  <router-view/>
 </template>
 
 <script>
-import Estudiante from './components/Estudiante.vue';
-import EliminarEstudiante from './components/EliminarEstudiante.vue';
-import GuardarEstudiante from './components/GuardarEstudiante.vue';
+//import Estudiante from './components/Estudiante.vue';
+//import EliminarEstudiante from './components/EliminarEstudiante.vue';
+//import GuardarEstudiante from './components/GuardarEstudiante.vue';
 
 export default {
   name: 'App',
   components: {
-    Estudiante,
-    EliminarEstudiante,
-    GuardarEstudiante
+    //Estudiante,
+    //EliminarEstudiante,
+    //GuardarEstudiante
+
   },
   data() {
     return {
