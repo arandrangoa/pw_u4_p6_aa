@@ -1,4 +1,5 @@
 <template>
+  <NavBar/>
   <router-view/>
 </template>
 
@@ -6,6 +7,8 @@
 //import Estudiante from './components/Estudiante.vue';
 //import EliminarEstudiante from './components/EliminarEstudiante.vue';
 //import GuardarEstudiante from './components/GuardarEstudiante.vue';
+import NavBar from '../src/components/NavBar.vue'
+import BienvenidaPage from './pages/BienvenidaPage.vue'
 
 export default {
   name: 'App',
@@ -13,6 +16,7 @@ export default {
     //Estudiante,
     //EliminarEstudiante,
     //GuardarEstudiante
+     NavBar,
 
   },
   data() {

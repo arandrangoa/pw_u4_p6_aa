@@ -80,6 +80,16 @@ export default {
       const data = await actualizarFachada(this.cedula, bodyEstudiante);
       console.log(data);
     },
+    
+      created(){
+    console.log(this.$route)
+    if(this.$route.params.cedula !== 'vacio' ){
+      this.cedula=this.$route.params.cedula;
+      this.consultar();
+      
+    }
+   
+  }
  
  
    
